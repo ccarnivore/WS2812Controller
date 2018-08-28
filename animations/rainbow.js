@@ -7,6 +7,7 @@ function rainbow() {
     var name = "rainbow.js";
     var RainbowOffset = 0;
     var RainbowSpeed = 1000 / 30;
+    var RainbowBrightness = 255;
 
     this.GoRainbow = function(args, strip) {
         strip.Mode = name + "rainbow";
@@ -43,6 +44,19 @@ function rainbow() {
         } else {
             RainbowSpeed = 1000 / 30;
         }
+    };
+
+    this.RainbowBrightness = function(args, strip) {
+        var val = parseInt(args.brightness);
+        var mappedVal = common.map_range(val, 0, 100, 50, 5);
+        if (typeof mappedVal === "number") {
+            RainbowBrightness = mappedVal;
+            console.log("New rainbow brightness: " + RainbowBrightness);
+        } else {
+            RainbowBrightness = 255;
+        }
+
+        strip.setBrightness(RainbowBrightness)
     };
 
 }
