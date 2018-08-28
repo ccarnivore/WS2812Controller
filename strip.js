@@ -1,5 +1,5 @@
-var config = require('./config');
-var ws281x = require('rpi-ws281x-native');
+const config = require('./config');
+const ws281x = require('rpi-ws281x-native');
 
 ws281x.init(config.NUM_LED);
 
@@ -46,13 +46,25 @@ function strip() {
     */
     this.SetLightColor = function (lightIndex, r, g, b) {
         console.log('setLightColor', lightIndex, r, g, b);
-        for (let i = 0; i < this.NUM_LEDS; i++) {
-            if (i === lightIndex) {
-                this.Lights[i] = 0xff0000;
-            } else {
-                this.Lights[i] = this.rgb2Int(0, 0, 0);
-            }
+        this.SetStripColor(0);
+        this.Lights[lightIndex] = this.rgb2Int(r, g, b);
+
+        this.Render();
+    };
+
+    this.setBoxColor = function (boxIdent) {
+        console.log('setBoxColor', boxIdent);
+        this.SetStripColor(0);
+
+        let boxConfig = config.BOX_CONFIG[boxIdent];
+        if (!boxConfig) {
+            console.log('could not find box ident in config');
         }
+
+        let boxCollection = config.BOX_CONFIG[boxIdent];
+        boxCollection.forEach((n) => {
+            this.Lights[n] = parseInt(config.BOX_COLOR);
+        });
 
         this.Render();
     };

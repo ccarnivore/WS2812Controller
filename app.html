@@ -89,8 +89,17 @@
         <div class="clearfix">&nbsp;</div>
         <div class="row"> 
           <div class="col-xs-12">
-            <button class="btn btn-danger" onclick="Stop();"> Stop Strip </button>
-            <button class="btn btn-danger" onclick="Single();"> SINGLE </button>
+            <button class="btn btn-danger" onclick="Stop();"> Stop Strip </button><br />
+            <input type="number" name="lightIndex" id="lightIndex" value="0" max="19"/>
+            <button class="btn btn-danger" onclick="Single();"> SINGLE </button><br />
+              <select name="box" id="box">
+                  <option value="0001">0001</option>
+                  <option value="0002">0002</option>
+                  <option value="0003">0003</option>
+                  <option value="0004">0004</option>
+                  <option value="0005">0005</option>
+              </select>
+              <button class="btn btn-danger" onclick="Box();"> BOX </button>
           </div>
         </div>
     
@@ -140,6 +149,58 @@
 
   <script>
 
+
+      $(document).ready(() => {
+          let jwt = null;
+          let socket = null;
+
+          $.ajax({
+              url: 'https://rest-exitbtest.exitb.de/v1/login/authenticate',
+              type: 'POST',
+              data: {
+                  client: 'exb',
+                  user: 'testUser6',
+                  password: 'daemondaemon'
+              },
+          }).done(function(res) {
+              jwt = res.response.jwt;
+
+              $.ajax({
+                  headers: {
+                      'Authorization': 'Bearer ' + jwt
+                  },
+                  url: 'https://rest-exitbtest.exitb.de/v1/login/getWebSocketAccessLink',
+                  type: 'GET',
+              }).done(function(res) {
+                  socket = new WebSocket(res.response.socketLink);
+                  socket.onopen = function () {
+                      console.info("socket opened");
+                  };
+                  socket.onmessage = gotMessage;
+              }).fail(function(res) {
+                  console.log(res);
+              });
+
+          }).fail(function(res) {
+              console.log(res);
+          });
+
+      });
+
+      function gotMessage(msg) {
+        let data = JSON.parse(msg.data);
+        if (data.event === 'pickBoxPick' && data.data.pickBoxIdent) {
+            let args = {
+                boxIdent: data.data.pickBoxIdent
+            };
+
+            AnimationRequest("control", "Box", args);
+            setTimeout(() => {
+                AnimationRequest("control", "Stop", {});
+            }, 2000);
+        }
+      }
+
     /*******************************
       control
     *******************************/         
@@ -151,11 +212,18 @@
               colorRed: 255,
               colorGreen: 0,
               colorBlue: 0,
-              lightIndex: 5,
+              lightIndex: $("#lightIndex").val(),
               brightness: 70
           };
 
           AnimationRequest("control", "Single", args);
+      }
+      function Box() {
+          let args = {
+              boxIdent: $("#box").val()
+          };
+
+          AnimationRequest("control", "Box", args);
       }
 
     /*******************************

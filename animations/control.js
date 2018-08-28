@@ -18,6 +18,13 @@
             strip.Mode = "FOO";
             console.log("set single color");
         };
+
+        this.Box = function(args, strip) {
+            strip.setBoxColor(args.boxIdent);
+
+            strip.Mode = "BOX";
+            console.log("set box color");
+        };
     }
 
 module.exports = new control();
