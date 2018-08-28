@@ -30,7 +30,7 @@ function strip() {
     *   Assign the brightness of the whole strip.
     */
     this.SetBrightness = function (brightness) {
-        // ws281x.setBrightness(brightness);
+        ws281x.setBrightness(brightness);
     };
 
     /*
@@ -49,7 +49,7 @@ function strip() {
             if (i > NUM_LEDS) break;
             tmp[i] = this.Lights[i];
         }
-        // ws281x.render(tmp);
+        ws281x.render(tmp);
     };
 }
 
