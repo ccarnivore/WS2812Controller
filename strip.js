@@ -1,29 +1,17 @@
-/* 
-*   Put your number of LEDs here.
-*/
-var NUM_LEDS = 20;
+import {NUM_LEDS} from "./config";
+import ws281x from 'rpi-ws281x-native';
 
-var ws281x = require('rpi-ws281x-native');
-var pixelData = new Uint32Array(NUM_LEDS);
 ws281x.init(NUM_LEDS);
 
-var Lights = [];
-
 function strip() {
-    
-    this.NUM_LEDS = NUM_LEDS;
-    this.Mode = "";
-    this.Lights = []; 
+    this.Lights = [];
+
     this.Clear = function () {
-        // ws281x.reset();
+        ws281x.reset();
     };
 
-    /*
-    *   Clear all LEDs back to 0x00000 and render
-    */
     this.Stop = function () {
-        strip.Clear();
-        CurrentMode = MODES.CLEAR;
+        this.Clear();
     };
 
     /*
@@ -40,6 +28,7 @@ function strip() {
         for (var i = 0; i < NUM_LEDS; i++) {
             this.Lights[i] = color;
         }
+
         this.Render();
     };
 
