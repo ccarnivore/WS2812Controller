@@ -45,6 +45,7 @@ function strip() {
     *   Set a single color for all LEDs
     */
     this.SetLightColor = function (lightIndex, r, g, b) {
+        console.log('setLightColor', lightIndex, r, g, b);
         for (let i = 0; i < this.NUM_LEDS; i++) {
             if (i === lightIndex) {
                 this.Lights[i] = this.rgb2Int(r, g, b);
