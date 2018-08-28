@@ -123,11 +123,8 @@
 /*******************************
     startup
 *******************************/
-
-    var server = app.listen(HTTP_PORT, function() {
-        console.log('***************************');
-        console.log(' WS2812 CONTROLLER STARTUP ');
-        console.log('***************************');
-    });
-
-    strip.Clear();
+var server = app.listen(HTTP_PORT, function() {
+    console.log('***************************');
+    console.log(' WS2812 CONTROLLER STARTUP ');
+    console.log('***************************');
+});
