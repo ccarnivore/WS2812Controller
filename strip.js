@@ -1,7 +1,7 @@
-import NUM_LEDS from "./config";
-import ws281x from 'rpi-ws281x-native';
+var config = require('./config');
+var ws281x = require('rpi-ws281x-native');
 
-ws281x.init(NUM_LEDS);
+ws281x.init(config.NUM_LED);
 
 function strip() {
     this.Lights = [];
