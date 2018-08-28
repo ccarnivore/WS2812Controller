@@ -7,7 +7,7 @@ function rainbow() {
     var name = "rainbow.js";
     var RainbowOffset = 0;
     var RainbowSpeed = 1000 / 30;
-    var RainbowBrightness = 255;
+    var RainbowBrightness = 100;
 
     this.GoRainbow = function(args, strip) {
         strip.Mode = name + "rainbow";
@@ -52,7 +52,7 @@ function rainbow() {
             RainbowBrightness = val;
             console.log("New rainbow brightness: " + RainbowBrightness);
         } else {
-            RainbowBrightness = 255;
+            RainbowBrightness = 100;
         }
     };
 
