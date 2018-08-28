@@ -20,7 +20,6 @@ function strip() {
     */
     this.Stop = function () {
         this.Clear();
-        CurrentMode = MODES.CLEAR;
     };
 
     /*
