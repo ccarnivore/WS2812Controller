@@ -22,8 +22,7 @@ function rainbow() {
         }
 
         RainbowOffset = (RainbowOffset + 1) % 256;
-        strip.setBrightness(RainbowBrightness);
-        
+        strip.SetBrightness(RainbowBrightness);
         strip.Render();
 
         setTimeout(function () {
