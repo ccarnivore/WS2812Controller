@@ -129,3 +129,5 @@
         console.log(' WS2812 CONTROLLER STARTUP ');
         console.log('***************************');
     });
+
+    strip.Clear();
