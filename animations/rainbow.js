@@ -1,5 +1,5 @@
 /*******************************
-	rainbow animations
+    rainbow animations
 *******************************/
     var common = require("./common.js");
 
