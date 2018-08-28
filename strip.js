@@ -1,4 +1,4 @@
-import {NUM_LEDS} from "./config";
+import NUM_LEDS from "./config";
 import ws281x from 'rpi-ws281x-native';
 
 ws281x.init(NUM_LEDS);

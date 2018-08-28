@@ -1,1 +1,1 @@
-export const NUM_LEDS = 20;
+export default NUM_LEDS = 20;
