@@ -124,7 +124,7 @@
  *******************************/
 function shutDown() {
     console.log('Received kill signal, shutting down gracefully');
-    strip.Clear();
+    strip.Stop();
 
     server.close(() => {
         console.log('Closed out remaining connections');
