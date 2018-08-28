@@ -100,21 +100,20 @@
     *    Find the correct reference to a specific library name;
     */
     function GetLibraryInstance(key) {
-        var lib = null;
-        switch (key)
-        {
+        let lib = null;
+        switch (key) {
             case "xmas":
                 lib = xmas;
-            break;
+                break;
             case "fade":
                 lib = fade;
-            break;
+                break;
             case "rainbow":
                 lib = rainbow;
-            break;
+                break;
             case "control":
                 lib = control;
-            break;
+                break;
         }
 
         return lib;
@@ -123,8 +122,12 @@
 /*******************************
     startup
 *******************************/
-var server = app.listen(HTTP_PORT, function() {
+const server = app.listen(HTTP_PORT, function() {
     console.log('***************************');
     console.log(' WS2812 CONTROLLER STARTUP ');
     console.log('***************************');
 });
+
+setInterval(() => server.getConnections(
+    (err, connections) => console.log(`${connections} connections currently open`)
+), 1000);
