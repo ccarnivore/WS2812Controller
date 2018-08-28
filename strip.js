@@ -1,7 +1,7 @@
 /* 
 *   Put your number of LEDs here.
 */
-var NUM_LEDS = 100;
+var NUM_LEDS = 20;
 
 var ws281x = require('rpi-ws281x-native');
 var pixelData = new Uint32Array(NUM_LEDS);
