@@ -25,7 +25,7 @@ function strip() {
     *   Set a single color for all LEDs
     */
     this.SetStripColor = function (color) {
-        for (var i = 0; i < NUM_LEDS; i++) {
+        for (var i = 0; i < config.NUM_LED; i++) {
             this.Lights[i] = color;
         }
 
@@ -34,8 +34,8 @@ function strip() {
 
     this.Render = function () {
         var tmp = [];
-        for (var i = 0; i < NUM_LEDS; i++) {
-            if (i > NUM_LEDS) break;
+        for (var i = 0; i < config.NUM_LED; i++) {
+            if (i > config.NUM_LED) break;
             tmp[i] = this.Lights[i];
         }
         ws281x.render(tmp);
