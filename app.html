@@ -147,13 +147,15 @@
         AnimationRequest("control", "Stop", null);
       }
       function Single() {
-        AnimationRequest("control", "Single", {
-            colorRed: 255,
-            colorGreen: 0,
-            colorBlue: 0,
-            lightIndex: 5,
-            brightness: 70
-        });
+          let args = {
+              colorRed: 255,
+              colorGreen: 0,
+              colorBlue: 0,
+              lightIndex: 5,
+              brightness: 70
+          };
+
+          AnimationRequest("control", "Single", args);
       }
 
     /*******************************
