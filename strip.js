@@ -48,7 +48,7 @@ function strip() {
         console.log('setLightColor', lightIndex, r, g, b);
         for (let i = 0; i < this.NUM_LEDS; i++) {
             if (i === lightIndex) {
-                this.Lights[i] = this.rgb2Int(r, g, b);
+                this.Lights[i] = 128;
             } else {
                 this.Lights[i] = this.rgb2Int(0, 0, 0);
             }
