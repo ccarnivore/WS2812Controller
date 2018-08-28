@@ -13,7 +13,8 @@
         };
 
         this.Single = function(args, strip) {
-            strip.SetLightColor(0, 128, 128, 0);
+            strip.SetLightColor(0, 130, 174, 188);
+            strip.SetBrightness(100);
             strip.Mode = "FOO";
             console.log("set single color");
         };
