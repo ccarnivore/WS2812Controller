@@ -3,8 +3,6 @@ var ws281x = require('rpi-ws281x-native');
 
 ws281x.init(config.NUM_LED);
 
-var Lights = [];
-
 function strip() {
 
     this.NUM_LEDS = config.NUM_LED;
@@ -33,9 +31,28 @@ function strip() {
     *   Set a single color for all LEDs
     */
     this.SetStripColor = function (color) {
-        for (var i = 0; i < this.NUM_LEDS; i++) {
+        for (let i = 0; i < this.NUM_LEDS; i++) {
             this.Lights[i] = color;
         }
+        this.Render();
+    };
+
+    this.rgb2Int = function(r, g, b) {
+        return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+    };
+
+    /*
+    *   Set a single color for all LEDs
+    */
+    this.SetLightColor = function (lightIndex, r, g, b) {
+        for (let i = 0; i < this.NUM_LEDS; i++) {
+            if (i === lightIndex) {
+                this.Lights[i] = this.rgb2Int(r, g, b);
+            } else {
+                this.Lights[i] = this.rgb2Int(0, 0, 0);
+            }
+        }
+
         this.Render();
     };
 
