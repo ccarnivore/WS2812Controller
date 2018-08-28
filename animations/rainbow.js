@@ -48,9 +48,8 @@ function rainbow() {
 
     this.RainbowBrightness = function(args, strip) {
         var val = parseInt(args.brightness);
-        var mappedVal = common.map_range(val, 0, 100, 50, 5);
-        if (typeof mappedVal === "number") {
-            RainbowBrightness = mappedVal;
+        if (typeof val === "number") {
+            RainbowBrightness = val;
             console.log("New rainbow brightness: " + RainbowBrightness);
         } else {
             RainbowBrightness = 255;
